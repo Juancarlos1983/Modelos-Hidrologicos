@@ -1,12 +1,17 @@
-% =====================================================================
-% ---------------------   JUAN CARLOS TICONA  -------------------------
-% ---------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  ----------
-% -------------------------- OUTUBRO DE 2023 --------------------------    
-% --------------------------------------------------------------------- 
-% =====================================================================
+% =======================================================================
+% -----------------------------------------------------------------------
+% -----------------------   JUAN CARLOS TICONA  -------------------------
+% ----------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  -----------
+% ---------------------------- Tank Model 4 -----------------------------
+% -------------------------- OUTUBRO DE 2023 ----------------------------
+% -----------------------------------------------------------------------
+% =======================================================================
 
 function [Q,QO] = TANK4hidro(x)
-% =======================================================================
+% Modelo hidrológico conceitual: Tank Model 4
+%
+% Copyright (C) 2023 Juan Carlos Ticona Gutierrez
+%
 % O modelo de tanque foi desenvolvido originalmente para uso em solos 
 % constantemente saturados, no Japão (Sugawara, 1979, 1995). Possui 4
 % tanques e 12 parametros.
@@ -36,9 +41,9 @@ function [Q,QO] = TANK4hidro(x)
 % % X = [HI1, HI2, HI3, HI4, HA1, HA2, HB1, HC1, a1, a2, b1, c1, d1, a0, b0, c0]
 %% =======================================================================
 % Começa a ler os dados de entrada
-QO = textread('vaz_goias_v.txt','%f')';                % vazão observado em m3/s
-P = textread('prec_goias_v.txt','%f');          % Precitacão em mm/dia
-ETR  = textread('evap_goias_v.txt','%f');  % Evapotranspiração mm/dia
+QO = textread('vaz_goias_c.txt','%f')';         % vazão observado em m3/s
+P = textread('prec_goias_c.txt','%f');          % Precitacão em mm/dia
+ETR  = textread('evap_goias_c.txt','%f');       % Evapotranspiração mm/dia
 NT=length(QO);
 PAR = x; % Le os parametros em uma coluna
 

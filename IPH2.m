@@ -1,21 +1,38 @@
 % =====================================================================
+% ---------------------------------------------------------------------
 % ---------------------   JUAN CARLOS TICONA  -------------------------
 % ---------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  ----------
+% ---------------------------- IPH II Model ---------------------------
 % -------------------------- OUTUBRO DE 2023 --------------------------    
 % --------------------------------------------------------------------- 
 % =====================================================================
 
 function [Q,QO] = IPH2(x)
-% Hydrologic conceptual model: IPH II
+% Modelo hidrológico conceitual: IPH II
+%
 % Copyright (C) 2023 Juan Carlos Ticona Gutierrez
+% O modelo IPH II ([6, 80, 81]) é um modelo conceitual concentrado chuva-vazão 
+% que simula a vazão do rio por meio de dados de precipitação e evaporação como 
+% dados de entrada e usando quatro rotinas diferentes. O modelo é amplamente 
+% utilizado no Brasil para modelar as respostas hidrológicas de pequenas bacias 
+% e normalmente funciona em intervalos de tempo diários ou horários.Possui
+% 7 parametros detalhada em:
+% BRAVO, J. M. et al. Avaliação visual e numérica da calibração do modelo hidrológico 
+% IPH II com fins educacionais. In: XVII Simpósio Brasileiro de Recursos Hídricos, 2007,
+% São Paulo. Anais do XVII Simpósio Brasileiro de Recursos Hídricos. Porto Alegre: 
+% Associação Brasileira de Recursos Hídricos, v. 1. 2007.
+% TUCCI, C. E. M.; CLARKE, R. T. Adaptative forecasting with a conceptual rainfall-runoff 
+% model. Hydrological forecasting Proceedings of the Oxford Symposium IAHS, n. 129, p. 425-454, 1980.
+% TUCCI, C. E. M.; ORDONEZ, J. S.; SIMÕES LO-PES, M. Modelo Matemático Precipi-tação-Vazão
+% IPH II Alguns Resultados. AnaisIV Simpósio Brasileiro de Recursos Hídricos. Fortaleza: [s.n.]. 1981.
 
-% comeca a ler os dados de entrada
+% Começa a ler os dados de entrada
 QO = textread('vaz_goias_v.txt','%f')';              % vazao observado em m3/s
 PREC = textread('prec_goias_v.txt','%f');            % precipitacao em mm/dia
 EVAP = textread('evap_goias_v.txt','%f');            % precipitacao mm/dia
 NT=length(PREC);
 
-%% comeca a ler os dados de entrada inicial
+% Comeca a ler os dados de entrada inicial
 load ('storeinitial_iphii_goias.prn')    
 % ------------------------------------------------------------------------
 NH  = storeinitial_iphii_goias(1);  % Tempo de concentração (dias)

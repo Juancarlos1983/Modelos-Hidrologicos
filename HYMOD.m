@@ -2,12 +2,16 @@
 % -----------------------------------------------------------------------
 % -----------------------   JUAN CARLOS TICONA  -------------------------
 % ----------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  -----------
-% ---------------------------- HyMOD MOdel ------------------------------
-% -------------------------- Dezembro do 2023 ---------------------------
+% ---------------------------- HyMOD Model ------------------------------
+% -------------------------- OUTUBRO DE 2023 ----------------------------
 % -----------------------------------------------------------------------
 % =======================================================================
 
 function [Q,QO] = HYMOD(X)
+% Modelo hidrológico conceitual: HyMOD
+%
+% Copyright (C) 2023 Juan Carlos Ticona Gutierrez
+%
 % =======================================================================
 % O modelo HyMOD combina uma rotina de umidade do solo do tipo PDM (exemplo, 
 % Moore (2007)) com uma cascata Nash de três reservatórios lineares que 
@@ -39,6 +43,8 @@ QO = textread('vaz_goias_c.txt','%f')';         % vazão observado em m3/s
 P = textread('prec_goias_c.txt','%f');          % Precitacão em mm/dia
 ETR  = textread('evap_goias_c.txt','%f');       % Evapotranspiração mm/dia
 NT   = length(QO);
+
+% Começa a ler os dados de entrada
 % Bacia Ijui
 % Area = 5414; % km^2
 % Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
@@ -49,7 +55,7 @@ NT   = length(QO);
 Area = 1817; % km^2
 Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
 
-%%Inicializar reservatorios do modelo
+% Inicializar reservatorios do modelo
 % load ('storeinitial_hymod_goias.prn')   % comeca a ler os dados de entrada, armazenamento inicial dos reservatorios
 % S(1)  = storeinitial_hymod_goias(1);
 % SL(1) = storeinitial_hymod_goias(2);

@@ -1,15 +1,20 @@
-% =====================================================================
-% ---------------------   JUAN CARLOS TICONA  -------------------------
-% ---------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  ----------
-% -------------------------- OUTUBRO DE 2023 --------------------------    
-% --------------------------------------------------------------------- 
-% =====================================================================
+% =======================================================================
+% -----------------------------------------------------------------------
+% -----------------------   JUAN CARLOS TICONA  -------------------------
+% ----------- INSTITUTO DE PESQUISAS HIDRAULICAS (IPH) UFRGS  -----------
+% ---------------------------- Tank Model 3 -----------------------------
+% -------------------------- OUTUBRO DE 2023 ---------------------------- 
+% -----------------------------------------------------------------------
+% =======================================================================
 
 function [Q,QO] = TANK3hidro(x)
-% =======================================================================
+% Modelo hidrológico conceitual: Tank Model 3
+%
+% Copyright (C) 2023 Juan Carlos Ticona Gutierrez
+%
 % O modelo de tanque foi desenvolvido originalmente para uso em solos 
 % constantemente saturados, no Japão (Sugawara, 1979, 1995). Possui 3
-% tanques e 12 parametros.
+% tanques e 9 parametros.
 
 % Descrição e unidades dos parametros:
 % HI1, HI2 e HI3 altura de cada armazenamento inicial *[mm]*
@@ -37,11 +42,13 @@ function [Q,QO] = TANK3hidro(x)
 
 %% =======================================================================
 % Começa a ler os dados de entrada
-QO = textread('vaz_goias_c.txt','%f')';                % vazão observado em m3/s
+QO = textread('vaz_goias_c.txt','%f')';         % vazão observado em m3/s
 P = textread('prec_goias_c.txt','%f');          % Precitacão em mm/dia
-ETR  = textread('evap_goias_c.txt','%f');  % Evapotranspiração mm/dia
+ETR  = textread('evap_goias_c.txt','%f');       % Evapotranspiração mm/dia
 NT=length(QO);
 PAR = x; % Le os parametros em uma coluna
+
+% Areas das bacias hidrograficas aplicadas
 % Bacia Ijui
 % Area = 5414; % km^2
 % Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
