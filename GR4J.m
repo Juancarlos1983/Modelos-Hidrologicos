@@ -15,8 +15,10 @@ function [ Q, QO ] = GR4J( X )
 % em bacias na França, mas também em outros países. O modelo também foi 
 % comparado com outros modelos hidrológicos e forneceu resultados comparativamente 
 % bons. Possui 4 parâmetros detalhada em:
-% LEMOINE, N. Le bassin versant de surface vu par le souterrain: une
-% voie d’amélioration des performances et du réalisme desmodèles pluie-débit? Paris. 2008.
+% PERRIN, C. Towards an improved version of a lumped rainfall-runoff model 
+% through a comparative approach. La Houille Blanche, v. 88, n. 6-7, p. 84-91, 2002.
+% PERRIN, C.; MICHEL, C.; ANDRÉASSIAN, V. Improvement of a parsimonious model 
+% for streamflow simulation. 275-289, v. 279, n. 1-4, p. 275-289, 2003.
 
 % Começa a ler os dados de entrada
 QO   = textread('vaz_goias_c.txt','%f')';        % vazão observado em m3/s
