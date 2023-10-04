@@ -9,31 +9,29 @@ function [ Q, QO ] = GR5J( X )
 % Hydrologic conceptual model: GR5J
 %
 % Copyright (C) 2023 Juan Carlos Ticona Gutierrez
-% O modelo GR4J é principalmente empírico, foi amplamente testado 
-% em bacias na França, mas também em outros países. O modelo também foi 
-% comparado com outros modelos hidrológicos e forneceu resultados comparativamente 
-% bons. Possui 5 parâmetros detalhada em:
-% PERRIN, C. Towards an improved version of a lumped rainfall-runoff model 
-% through a comparative approach. La Houille Blanche, v. 88, n. 6-7, p. 84-91, 2002.
-% PERRIN, C.; MICHEL, C.; ANDRÉASSIAN, V. Improvement of a parsimonious model 
-% for streamflow simulation. 275-289, v. 279, n. 1-4, p. 275-289, 2003.
+% O modelo GR4J Ã© principalmente empÃ­rico, foi amplamente testado 
+% em bacias na FranÃ§a, mas tambÃ©m em outros paÃ­ses. O modelo tambÃ©m foi 
+% comparado com outros modelos hidrolÃ³gicos e forneceu resultados comparativamente 
+% bons. Possui 5 parÃ¢metros detalhada em:
+% LEMOINE, N. Le bassin versant de surface vu par le souterrain: une
+% voie dâ€™amÃ©lioration des performances et du rÃ©alisme desmodÃ¨les pluie-dÃ©bit? Paris. 2008.
 
-% Começa a ler os dados de entrada
-QO   = textread('vaz_goias_v.txt','%f')';        % vazão observado em m3/s
-P    = textread('prec_goias_v.txt','%f');        % Precitacão em mm/dia
-E    = textread('evap_goias_v.txt','%f');        % Evapotranspiração mm/dia
+% ComeÃ§a a ler os dados de entrada
+QO   = textread('vaz_goias_v.txt','%f')';        % vazÃ£o observado em m3/s
+P    = textread('prec_goias_v.txt','%f');        % PrecitacÃ£o em mm/dia
+E    = textread('evap_goias_v.txt','%f');        % EvapotranspiraÃ§Ã£o mm/dia
 NT   = length(QO);
 
 % Areas das bacias hidrograficas aplicadas
 % Bacia Ijui
 % Area = 5414; % km^2
-% Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
+% Area = 86.4/Area;  % conversÃ£o vazÃ£o em unidades de m^3/s
 % Bacia Canoas
 % Area = 989; % km^2
-% Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
+% Area = 86.4/Area;  % conversÃ£o vazÃ£o em unidades de m^3/s
 % % Bacia Goias
 Area = 1817; % km^2
-Area = 86.4/Area;  % conversão vazão em unidades de m^3/s
+Area = 86.4/Area;  % conversÃ£o vazÃ£o em unidades de m^3/s
 
 % Iniciar vetores de armazenamento
 S = zeros(1,NT);
@@ -57,12 +55,12 @@ load ('storeinitial_gr5j_goias.prn')    % comeca a ler os dados de entrada, arma
 S(1) = storeinitial_gr5j_goias(1);      % Armazenamento inicial de umidade do solo
 R(1) = storeinitial_gr5j_goias(2);      % Armazenamento inicial de routing
 
-% Parâmetros 
-Smax      = X(1);     % Armazenamento máximo de umidade do solo [mm]
-kf        = X(2);     % Coeficiente de troca de água [mm/d]
-Rmax      = X(3);     % Armazenamento máximo de armazenamento de roteamento [mm]
+% ParÃ¢metros 
+Smax      = X(1);     % Armazenamento mÃ¡ximo de umidade do solo [mm]
+kf        = X(2);     % Coeficiente de troca de Ã¡gua [mm/d]
+Rmax      = X(3);     % Armazenamento mÃ¡ximo de armazenamento de roteamento [mm]
 T         = X(4);     % delay de fluxo [d]
-K         = X(5);     % Limiar de troca entre bacias hidrográficas[-]   
+K         = X(5);     % Limiar de troca entre bacias hidrogrÃ¡ficas[-]   
 % S(1)      = X(6);   % Armazenamento inicial de umidade do solo
 % R(1)      = X(7);   % Armazenamento inicial de routing
 
@@ -70,8 +68,8 @@ K         = X(5);     % Limiar de troca entre bacias hidrográficas[-]
 UH1 = uh_1(T);
 UH2 = uh_2(T);
 
-n1  = length(UH1);  	% vetor temporário necessário para lidar com o roteamento
-n2  = length(UH2);      % vetor temporário necessário para lidar com o roteamento
+n1  = length(UH1);  	% vetor temporÃ¡rio necessÃ¡rio para lidar com o roteamento
+n2  = length(UH2);      % vetor temporÃ¡rio necessÃ¡rio para lidar com o roteamento
 
 for t = 2:NT
     if(P(t) >= E(t)) 
