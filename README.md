@@ -1,2 +1,2 @@
-# Modelo-GR5J
-Modelo hidrológico  concentrado para séries de vazão diárias 
+# Modelo hidrológico concentrado 
+A aplicação destes modelos foi para séries de vazões diárias.
